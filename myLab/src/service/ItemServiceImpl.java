@@ -39,6 +39,12 @@ public class ItemServiceImpl implements ItemService {
 		this.itemDao.deleteById(id);
 		
 	}
+
+	@Override
+	public void saveItem(Item item) {
+		this.itemDao.saveItem(item);
+		
+	}
 	
 	
 

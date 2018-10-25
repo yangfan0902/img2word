@@ -6,6 +6,7 @@ import bean.Item;
 
 public interface ItemDao {
 	
+	void saveItem(Item item);
 	
 	Item findItemById(int id);
 

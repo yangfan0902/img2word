@@ -20,4 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteById" parameterType="int">
 		DELETE FROM item WHERE id = #{id}
 	</delete>
+	
+	<insert id="saveItem" parameterType="bean.Item">
+		INSERT INTO item (name,date,product,price,number,totalprice,description) VALUES (#{name},#{date},#{product},#{price},#{number},#{totalprice},#{description})
+	</insert>
+	
 </mapper>

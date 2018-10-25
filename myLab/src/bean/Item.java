@@ -12,6 +12,8 @@ public class Item {
 	private double totalprice;
 	private String description;
 	private int user_id;
+	
+
 	public int getId() {
 		return id;
 	}
@@ -25,11 +27,9 @@ public class Item {
 		this.name = name;
 	}
 	public Date getDate() {
-		return date;
+		return new Date();
 	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 	public String getProduct() {
 		return product;
 	}

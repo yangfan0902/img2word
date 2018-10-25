@@ -9,4 +9,5 @@ public interface ItemService {
 	Item findItemById(int id);
 	void updateItem(Item item);
 	void deleteById(int id);
+	void saveItem(Item item);
 }

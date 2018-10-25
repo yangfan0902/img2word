@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Item;
+import bean.QueryVo;
 import service.ItemService;
 import service.ItemServiceImpl;
 
@@ -66,5 +68,23 @@ public class ItemController {
 		}
 		return null;
 		
+	}
+	@RequestMapping("/addItem.action")
+	public ModelAndView addItem(){
+		
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("addItem");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/add.action")
+	public ModelAndView add(QueryVo queryVo,ArrayList<Item> itemList){
+		
+		for(Item i:queryVo.getItemList()){
+			itemService.saveItem(i);
+		}
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("message");
+		return modelAndView;
 	}
 }
