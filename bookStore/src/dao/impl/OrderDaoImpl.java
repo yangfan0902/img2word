@@ -84,7 +84,7 @@ public class OrderDaoImpl implements OrderDao {
 			Connection conn=JdbcUtils.getConnection();
 			QueryRunner runner=new QueryRunner();
 			String sql="select * from orders where state=?";
-			List<Order> list=(List<Order>) runner.query(conn, sql, state,new BeanHandler(Order.class));
+			List<Order> list=(List<Order>) runner.query(conn, sql, state,new BeanListHandler(Order.class));
 			
 			for(Order o:list){
 				sql="select u.* from orders o,user u where o.id=? and o.user_id=u.id";
@@ -92,6 +92,20 @@ public class OrderDaoImpl implements OrderDao {
 				o.setUser(user);
 			}
 			return list;
+		}catch(Exception e){
+			throw new RuntimeException(e);
+		}
+		
+	}
+	public void update(String id,boolean state){
+		try{
+			Connection conn=JdbcUtils.getConnection();
+			QueryRunner runner=new QueryRunner();
+			String sql="update orders set state=? where id=?";
+			Object param[]={state,id};
+			
+			runner.update(conn, sql, param);
+			
 		}catch(Exception e){
 			throw new RuntimeException(e);
 		}

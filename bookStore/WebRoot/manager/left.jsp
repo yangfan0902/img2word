@@ -42,12 +42,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  				</div>
  			</a>
  		</li>
- 		
+ 		<br/><br/>
  		<li>
  			<a href="#" onclick="test(children[0])">订单管理
  				<div class="dc">
- 					<a href="#" target="right">待处理订单</a><br/>
- 					<a href="#" target="right">已发货订单</a><br/>
+ 					<a href="${pageContext.request.contextPath}/OrderServlet1?method=getAll&state=false" target="right">待处理订单</a><br/>
+ 					<a href="${pageContext.request.contextPath}/OrderServlet1?method=getAll&state=true" target="right">已发货订单</a><br/>
+ 				</div>
+ 			</a>
+ 		</li>
+ 		<br/><br/>
+ 		<li>
+ 			<a href="#" onclick="test(children[0])">数据库管理
+ 				<div class="dc">
+ 					<a href="${pageContext.request.contextPath}/manager/dbback.jsp?" target="right">数据库备份</a><br/>
+ 					<a href="${pageContext.request.contextPath}/DBServlet?method=list" target="right">数据库恢复</a><br/>
  				</div>
  			</a>
  		</li>

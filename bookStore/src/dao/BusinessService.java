@@ -5,6 +5,7 @@ import java.util.List;
 import domain.Book;
 import domain.Cart;
 import domain.Category;
+import domain.DBBack;
 import domain.Order;
 import domain.PageBean;
 import domain.QueryInfo;
@@ -48,5 +49,16 @@ public interface BusinessService {
 	Order findOrder(String id);
 
 	List getOrderByState(boolean state);
+	
+	void update(String id,boolean state);
+	
+	
+	/**
+	 * 数据库相关的服务
+	 */
+	public void addDBBack(DBBack back);
+	public DBBack findBack(String id);
+	public List getAllBack();
+	
 
 }

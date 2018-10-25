@@ -12,11 +12,16 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class JdbcUtils {
 	private static ThreadLocal<Connection> tl=new ThreadLocal<Connection>();
 	private static DataSource ds;
+	private static DataSource ds_back;
 	static{
 		ds=new ComboPooledDataSource();
+		ds_back=new ComboPooledDataSource("back");
 	}
 	public static DataSource getDataSource(){
 		return ds;
+	}
+	public static DataSource getDataSoure_back(){
+		return ds_back;
 	}
 	
 	public static Connection getConnection(){

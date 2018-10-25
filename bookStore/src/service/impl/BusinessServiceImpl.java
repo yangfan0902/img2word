@@ -10,12 +10,14 @@ import java.util.UUID;
 import dao.BookDao;
 import dao.BusinessService;
 import dao.CategoryDao;
+import dao.DBBackDao;
 import dao.OrderDao;
 import dao.UserDao;
 import domain.Book;
 import domain.Cart;
 import domain.CartItem;
 import domain.Category;
+import domain.DBBack;
 import domain.Order;
 import domain.OrderItem;
 import domain.PageBean;
@@ -29,6 +31,7 @@ public class BusinessServiceImpl implements BusinessService {
 	BookDao bdao=DaoFactory.getInstance().creatDao(BookDao.class);
 	OrderDao odao=DaoFactory.getInstance().creatDao(OrderDao.class);
 	UserDao udao=DaoFactory.getInstance().creatDao(UserDao.class);
+	DBBackDao dbbdao=DaoFactory.getInstance().creatDao(DBBackDao.class);
 	/* (non-Javadoc)
 	 * @see service.impl.BusinessService#addCategory(domain.Category)
 	 */
@@ -151,10 +154,26 @@ public class BusinessServiceImpl implements BusinessService {
 	public List getAllBook() {
 		return bdao.getAlBook();
 	}
+	@Override
+	public void update(String id,boolean state) {
+		// TODO Auto-generated method stub
+		odao.update(id,state);
+	}
 	
+	/**
+	 * 数据库相关
+	 */
+	public void addDBBack(DBBack back){
+		dbbdao.add(back);
+	}
 	
+	public List getAllBack(){
+		return dbbdao.getAll();
+	}
 	
-	
+	public DBBack findBack(String id){
+		return dbbdao.find(id);
+	}
 	
 	
 	
