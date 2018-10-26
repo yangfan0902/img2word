@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +18,7 @@ import service.ItemService;
 import service.ItemServiceImpl;
 
 @Controller
+@RequestMapping("item")
 public class ItemController {
 	
 	@Autowired
@@ -40,10 +42,17 @@ public class ItemController {
 			return modelAndView;
 		}
 
-	@RequestMapping("/itemList")
-	public ModelAndView queryItemList(){
-		List<Item> list=this.itemService.queryItemList();
+	@RequestMapping("/itemListByName")
+	public ModelAndView queryItemListByName(HttpSession session){
 		ModelAndView modelAndView=new ModelAndView();
+		String name=(String)session.getAttribute("name");
+		if(name==null){
+			modelAndView.setViewName("login");
+			return modelAndView;
+		}
+		List<Item> list=this.itemService.queryItemListByName((String)session.getAttribute("name"));
+		
+		
 		modelAndView.addObject("itemList", list);
 		modelAndView.setViewName("itemList");
 		return modelAndView;
@@ -87,4 +96,19 @@ public class ItemController {
 		modelAndView.setViewName("message");
 		return modelAndView;
 	}
+	
+	@RequestMapping("/login")
+	public ModelAndView login(){
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("login");
+		return modelAndView;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

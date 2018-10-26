@@ -45,6 +45,14 @@ public class ItemServiceImpl implements ItemService {
 		this.itemDao.saveItem(item);
 		
 	}
+
+	@Override
+	public List<Item> queryItemListByName(String name) {
+		
+		List<Item> list=this.itemDao.selectByName(name);
+		
+		return list;
+	}
 	
 	
 

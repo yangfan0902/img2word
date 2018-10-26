@@ -15,4 +15,6 @@ public interface ItemDao {
 	void updateItem(Item item);
 
 	void deleteById(int id);
+
+	List<Item> selectByName(String name);
 }

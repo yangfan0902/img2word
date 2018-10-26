@@ -10,4 +10,5 @@ public interface ItemService {
 	void updateItem(Item item);
 	void deleteById(int id);
 	void saveItem(Item item);
+	List<Item> queryItemListByName(String name);
 }

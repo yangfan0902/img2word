@@ -25,12 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body> 
 	<form action="${pageContext.request.contextPath }/item/queryitem.action" method="post">
-		查询条件：
-		<table width="100%" border=1>
-			<tr>
-				<td><input type="submit" value="查询"/></td>
-			</tr>
-		</table>
+		欢迎：<%= session.getAttribute("name") %>
+		<br>
 		订单列表：
 		<table width="100%" border=1>
 			<tr>
@@ -53,8 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>${item.description}</td>
 					
 					<td>
-						<a href="${pageContext.request.contextPath }/itemEdit.action?id=${item.id}&method=update">修改</a>
-						<a href="${pageContext.request.contextPath }/itemEdit.action?id=${item.id}&method=delete">删除</a>
+						<a href="${pageContext.request.contextPath }/item/itemEdit.action?id=${item.id}&method=update">修改</a>
+						<a href="${pageContext.request.contextPath }/item/itemEdit.action?id=${item.id}&method=delete">删除</a>
 					</td>
 					
 				</tr>

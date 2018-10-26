@@ -12,6 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from item
 	</select>
 	
+	<select id="selectByName" parameterType="String" resultType="bean.Item">
+		select * from item where name=#{name}
+	</select>
+	
 	<update id="updateItem" parameterType="bean.Item">
 		UPDATE item SET product = #{product}, price=#{price},number=#{number},totalprice=#{totalprice},description=#{description}
 		WHERE id = #{id}

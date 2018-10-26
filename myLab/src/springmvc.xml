@@ -12,6 +12,14 @@
 
 	<!-- 注解驱动 -->
 	<mvc:annotation-driven />
+	
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/item/**"/>
+			<bean class="interceptor.LoginHandlerInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- Example: prefix="/WEB-INF/jsp/", suffix=".jsp", viewname="test" -> 
 		"/WEB-INF/jsp/test.jsp" -->
