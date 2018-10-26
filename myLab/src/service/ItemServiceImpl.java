@@ -15,7 +15,7 @@ public class ItemServiceImpl implements ItemService {
 	private ItemDao itemDao;
 		
 	@Override
-	public List<Item> queryItemList() {
+	public List<Item> findAllItem() {
 		
 		List<Item> list=this.itemDao.selectAll();
 		

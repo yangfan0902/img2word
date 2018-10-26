@@ -26,7 +26,7 @@ public class ItemController {
 	
 	@RequestMapping("/updateitem.action")
 		public ModelAndView itemUpdate(HttpServletRequest request){
-		List<Item> list=this.itemService.queryItemList();
+		
 
 			Item item=this.itemService.findItemById(Integer.parseInt(request.getParameter("id")));
 			item.setPrice(Double.parseDouble(request.getParameter("price")));
@@ -87,9 +87,11 @@ public class ItemController {
 	}
 	
 	@RequestMapping("/add.action")
-	public ModelAndView add(QueryVo queryVo,ArrayList<Item> itemList){
+	public ModelAndView add(QueryVo queryVo,ArrayList<Item> itemList,HttpSession session){
 		
 		for(Item i:queryVo.getItemList()){
+		
+			i.setName((String)session.getAttribute("name"));
 			itemService.saveItem(i);
 		}
 		ModelAndView modelAndView=new ModelAndView();
@@ -103,6 +105,19 @@ public class ItemController {
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
+	
+	@RequestMapping("/allItemList")
+	public ModelAndView findAllItem(){
+		
+		List<Item> itemList=itemService.findAllItem();
+		ModelAndView modelAndView=new ModelAndView();
+		
+		modelAndView.addObject("allItemList", itemList);
+		
+		modelAndView.setViewName("allItemList");
+		return modelAndView;
+	}
+	
 	
 	
 	

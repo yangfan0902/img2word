@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body> 
 	
 		<br>
-		<%= session.getAttribute("name") %> 的订单列表：
-		<table width="100%" border=1>
+		课题组订单列表：
+		<table width="70%" border=1>
 			<tr>
 				<td>姓名</td>
 				<td>申请日期</td>
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>总价</td>
 				<td>备注</td>
 			</tr>
-			<c:forEach items="${itemList}" var="item">
+			<c:forEach items="${allItemList}" var="item">
 				<tr>
 					<td>${item.name }</td>
 					<td><fmt:formatDate value="${item.date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -47,18 +47,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>${item.totalprice}</td>
 					<td>${item.description}</td>
 					
-					<td>
-						<a href="${pageContext.request.contextPath }/item/itemEdit.action?id=${item.id}&method=update">修改</a>
-						<a href="${pageContext.request.contextPath }/item/itemEdit.action?id=${item.id}&method=delete">删除</a>
-					</td>
+					
 					
 				</tr>
 			</c:forEach>
 		
 		</table>
 	
-	<a href="${pageContext.request.contextPath }/item/addItem.action">创建订单</a>
-	<a href="${pageContext.request.contextPath }/item/allItemList.action">查看所有订单</a>
-	<a href="${pageContext.request.contextPath }/user/logout.action">注销用户</a>
+	<%-- <a href="${pageContext.request.contextPath }/item/addItem.action">创建订单</a>
+	<a href="${pageContext.request.contextPath }/item/allItemList.action">查看所有订单</a> --%>
+	<a href="${pageContext.request.contextPath }/item/itemListByName.action">返回我的订单</a>
 </body>
 </html>

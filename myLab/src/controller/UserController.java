@@ -50,6 +50,13 @@ public class UserController {
 		return "login";
 	}
 	
+	//×¢ÏúÓÃ»§
+	@RequestMapping("logout")
+	public String logout(HttpSession session){
+		session.removeAttribute("name");
+		return "login";
+	}
+	
 	
 	
 	

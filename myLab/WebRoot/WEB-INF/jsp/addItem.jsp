@@ -28,13 +28,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var tdList=trList[trList.length-1].getElementsByTagName("td");
 			var number=trList.length-1;
 			
-			var nameinput=document.createElement("input");
+			//var nameinput=document.createElement("input");
 			var productinput=document.createElement("input");
 			var priceinput=document.createElement("input");
 			var numberinput=document.createElement("input");
 			var descriptioninput=document.createElement("input");
 			
-			nameinput.setAttribute("name","itemList["+number+"].name");
+			//nameinput.setAttribute("name","itemList["+number+"].name");
 			productinput.setAttribute("name","itemList["+number+"].product");
 			priceinput.setAttribute("name","itemList["+number+"].price");
 			numberinput.setAttribute("name","itemList["+number+"].number");
@@ -42,26 +42,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			
 			var td1=document.createElement("td");
-			td1.appendChild(nameinput);
+			td1.appendChild(productinput);
 					
 			var td2=document.createElement("td");
-			td2.appendChild(productinput);
+			td2.appendChild(priceinput);
 			
 			var td3=document.createElement("td");
-			td3.appendChild(priceinput);
+			td3.appendChild(numberinput);
 			
 			var td4=document.createElement("td");
-			td4.appendChild(numberinput);
+			td4.appendChild(descriptioninput);
 			
-			var td5=document.createElement("td");
-			td5.appendChild(descriptioninput);
+			
 			
 			var tr=document.createElement("tr");
 			tr.appendChild(td1);
 			tr.appendChild(td2);
 			tr.appendChild(td3);
 			tr.appendChild(td4);
-			tr.appendChild(td5);
+			//tr.appendChild(td5);
 			
 			
 			tableNode.appendChild(tr);
@@ -78,12 +77,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body> 
-	<form action="${pageContext.request.contextPath }/add.action" method="post">
+	<form action="${pageContext.request.contextPath }/item/add.action" method="post">
 		<input type="button" value="增加订单" onclick="addRow()">
 		订单列表：
 		<table width="80%" border=1 id="table">
 			<tr>
-				<td>姓名</td>
 				<td>商品名称</td>
 				<td>单价/元</td>
 				<td>数量</td>
@@ -91,7 +89,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 			
 			<tr>
-				<td><input type="text" name="itemList[0].name"/></td>
 				<td><input type="text" name="itemList[0].product"/></td>
 				<td><input type="text" name="itemList[0].price"/></td>
 				<td><input type="text" name="itemList[0].number"/></td>
