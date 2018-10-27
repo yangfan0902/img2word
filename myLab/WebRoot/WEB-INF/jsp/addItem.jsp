@@ -96,6 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 		</table>
 		<input type="submit" value="提交"/>
+		<a href="${pageContext.request.contextPath }/item/itemListByName.action" class="to_login">返回</a>
 	</form>
 </body>
 </html>

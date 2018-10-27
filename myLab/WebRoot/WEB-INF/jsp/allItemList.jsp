@@ -37,7 +37,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>总价</td>
 				<td>备注</td>
 			</tr>
+			<c:set value="0" var="total" />
 			<c:forEach items="${allItemList}" var="item">
+				<c:set var="total" value="${total+item.totalprice }"></c:set>
 				<tr>
 					<td>${item.name }</td>
 					<td><fmt:formatDate value="${item.date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -51,9 +53,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				</tr>
 			</c:forEach>
-		
+			
 		</table>
-	
+		总额 ${total}
+		<br>
 	<%-- <a href="${pageContext.request.contextPath }/item/addItem.action">创建订单</a>
 	<a href="${pageContext.request.contextPath }/item/allItemList.action">查看所有订单</a> --%>
 	<a href="${pageContext.request.contextPath }/item/itemListByName.action">返回我的订单</a>

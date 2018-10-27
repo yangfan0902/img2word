@@ -30,5 +30,8 @@
 		<!-- 配置逻辑视图的后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<!-- 配置全局异常处理器 -->
+	<bean class="exception.UserHandlerException"></bean>
 
 </beans>

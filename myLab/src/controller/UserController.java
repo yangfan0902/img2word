@@ -4,9 +4,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import bean.User;
+import exception.MyException;
 import service.ItemService;
 import service.UserService;
 
@@ -24,12 +26,12 @@ public class UserController {
 	}
 	
 	@RequestMapping("login")
-	public String login(String name,String password,HttpSession session){
+	public String login(String name,String password,HttpSession session) throws MyException{
 		
 		User user=userService.findUser(name, password);
 		
 		if(user==null){
-			return "register";
+			throw new MyException("密码错误或用户名不存在");
 		}else{
 			session.setAttribute("name", name);
 			
@@ -45,9 +47,15 @@ public class UserController {
 	}
 	
 	@RequestMapping("register")
-	public String register(String name,String password){
-		userService.saveUser(name,password);
-		return "login";
+	public String register(String name,String password,Model model) throws MyException{
+		try{
+			userService.saveUser(name,password);
+			model.addAttribute("message", "注册成功");
+			return "message";
+		}catch(Exception e){
+			throw new MyException("用户名已被使用");
+		}
+		
 	}
 	
 	//注销用户
