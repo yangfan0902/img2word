@@ -29,4 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO item (name,date,product,price,number,totalprice,description) VALUES (#{name},#{date},#{product},#{price},#{number},#{totalprice},#{description})
 	</insert>
 	
+	<select id="findItemByWeek" parameterType="long" resultType="bean.Item">
+		select * from item where date>#{time}
+	</select>
+	
+	<select id="findItemByNameWeek" resultType="bean.Item">
+		select * from item where name=#{name} and date>#{time}
+	</select>
+	
 </mapper>

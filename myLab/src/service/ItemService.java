@@ -11,4 +11,6 @@ public interface ItemService {
 	void deleteById(int id);
 	void saveItem(Item item);
 	List<Item> queryItemListByName(String name);
+	List<Item> findItemByWeek(long currentTime,List list);
+	List<Item> findItemByNameWeek(Long currentTime, List<Integer> list,String name);
 }

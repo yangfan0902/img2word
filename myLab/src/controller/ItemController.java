@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -102,6 +104,7 @@ public class ItemController {
 			for(Item i:queryVo.getItemList()){
 				
 				i.setName((String)session.getAttribute("name"));
+				i.setDate((new Date()).getTime());
 				itemService.saveItem(i);
 			}
 			
@@ -123,6 +126,7 @@ public class ItemController {
 	public ModelAndView findAllItem(){
 		
 		List<Item> itemList=itemService.findAllItem();
+		
 		ModelAndView modelAndView=new ModelAndView();
 		
 		modelAndView.addObject("allItemList", itemList);
@@ -131,7 +135,53 @@ public class ItemController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("/itemListByWeek")
+	public ModelAndView itemListByWeek(){
+		Long currentTime=(new Date()).getTime();
+		List<Integer> list=this.getTimeList();
+		List<Item> itemList=itemService.findItemByWeek(currentTime,list);
+		ModelAndView modelAndView=new ModelAndView();
+		
+		modelAndView.addObject("allItemList", itemList);
+		
+		modelAndView.setViewName("allItemList");
+		return modelAndView;
+	}
 	
+
+	@RequestMapping("/itemListByNameByWeek")
+	public String queryItemListByNameByWeek(HttpSession session,Model model){
+		
+		String name=(String)session.getAttribute("name");
+		if(name==null){
+			return "forward:/item/login.action";
+		}
+		if(name.equals("Ð¤î£")){
+			
+			return "redirect:/item/allItemList.action";
+		}
+		long currentTime=(new Date()).getTime();
+		List<Integer> list=this.getTimeList();
+		List<Item> itemList=this.itemService.findItemByNameWeek(currentTime, list, name);
+		model.addAttribute("itemList", itemList);
+		
+		return "forward:/item/toItemList.action";
+	}
+	
+	public static List<Integer> getTimeList(){
+		
+		Calendar calendar=Calendar.getInstance();
+		int dayOfWeek=calendar.get(Calendar.DAY_OF_WEEK);
+		int hour=calendar.get(Calendar.HOUR_OF_DAY);
+		int min=calendar.get(Calendar.MINUTE);
+		int sec=calendar.get(Calendar.SECOND);
+		ArrayList<Integer> list=new ArrayList<>();
+		list.add(dayOfWeek);
+		list.add(hour);
+		list.add(min);
+		list.add(sec);
+		return list;
+	}
 	
 	
 	

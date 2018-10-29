@@ -5,7 +5,7 @@ import java.util.Date;
 public class Item {
 	private int id;
 	private String name;
-	private Date date;
+	private long date;
 	private String product;
 	private double price;
 	private int number;
@@ -26,10 +26,12 @@ public class Item {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getDate() {
-		return new Date();
+	public long getDate() {
+		return date;
 	}
-	
+	public void setDate(long date) {
+		this.date = date;
+	}
 	public String getProduct() {
 		return product;
 	}

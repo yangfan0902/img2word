@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import bean.Item;
 
 public interface ItemDao {
@@ -17,4 +19,8 @@ public interface ItemDao {
 	void deleteById(int id);
 
 	List<Item> selectByName(String name);
+
+	List<Item> findItemByWeek(long time);
+
+	List<Item> findItemByNameWeek(@Param("time")long time,@Param("name")String name);
 }
