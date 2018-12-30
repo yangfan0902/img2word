@@ -1,0 +1,9 @@
+com\yang\configuration\SpringBootStartApplication.class
+com\yang\controller\WebAppConfig.class
+com\yang\service\Img2word.class
+com\yang\configuration\DemoController.class
+com\yang\configuration\SampleController.class
+pojo\User.class
+com\yang\controller\UserController.class
+com\yang\dao\UserDao.class
+com\yang\service\UserService.class

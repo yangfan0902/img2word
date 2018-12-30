@@ -55,7 +55,7 @@ public class ItemController {
 	@RequestMapping("/itemListByName")
 	public String queryItemListByName(HttpSession session,Model model){
 		
-		String name=(String)session.getAttribute("name");
+		String name=(String)session.getAttribute(" ");
 		if(name==null){
 			return "forward:/item/login.action";
 		}
